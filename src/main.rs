@@ -1,3 +1,6 @@
+use advent_of_code_2022::days::*;
+
 fn main() {
-    println!("Hello, world!");
+    // d01::part1();
+    // d01::part2();
 }
