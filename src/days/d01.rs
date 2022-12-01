@@ -70,4 +70,34 @@ pub fn part1() {
     println!("Day 01 > Part 1: {}", result.max_calories);
 }
 
-pub fn part2() {}
+// --- Part Two ---
+
+// By the time you calculate the answer to the Elves' question, they've already realized that the Elf carrying the most Calories of food might eventually run out of snacks.
+
+// To avoid this unacceptable situation, the Elves would instead like to know the total Calories carried by the top three Elves carrying the most Calories. That way, even if one of those Elves runs out of snacks, they still have two backups.
+
+// In the example above, the top three Elves are the fourth Elf (with 24000 Calories), then the third Elf (with 11000 Calories), then the fifth Elf (with 10000 Calories). The sum of the Calories carried by these three elves is 45000.
+
+// Find the top three Elves carrying the most Calories. How many Calories are those Elves carrying in total?
+
+use std::collections::BinaryHeap;
+
+pub fn part2() {
+    let mut heap = BinaryHeap::new();
+
+    read_file_lines("input/d01.txt").iter().fold(
+        0_u32,
+        |count, elf_annotation| {
+            if elf_annotation.is_empty() {
+                heap.push(count);
+                return 0
+            }
+            
+            let calories: u32 = elf_annotation.parse().unwrap();
+            count + calories
+        },
+    );
+
+    let total_calories: u32 = heap.iter().take(3).sum();
+    println!("Day 02 > Part 2: {}", total_calories);
+}
