@@ -7,4 +7,6 @@ fn main() {
     d02::part2();
     d03::part1();
     d03::part2();
+    d04::part1();
+    d04::part2();
 }
