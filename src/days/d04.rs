@@ -49,22 +49,22 @@ pub fn part1() {
     let overlaps = read_file_lines("input/d04.txt")
         .iter()
         .fold(0_u16, |prev, pair| {
-            let mut sections = pair.split(",");
-            let mut first_section = sections.next().unwrap().split("-");
-            let mut second_section = sections.next().unwrap().split("-");
+            let mut sections = pair.split(',');
+            let mut first_section = sections.next().unwrap().split('-');
+            let mut second_section = sections.next().unwrap().split('-');
 
             let first_section_s = first_section.next().unwrap().parse::<u8>().unwrap();
             let first_section_e = first_section.next().unwrap().parse::<u8>().unwrap();
             let second_section_s = second_section.next().unwrap().parse::<u8>().unwrap();
             let second_section_e = second_section.next().unwrap().parse::<u8>().unwrap();
 
-            return if (first_section_s <= second_section_s && first_section_e >= second_section_e)
+            if (first_section_s <= second_section_s && first_section_e >= second_section_e)
                 || (second_section_s <= first_section_s && second_section_e >= first_section_e)
             {
                 prev + 1
             } else {
-                prev + 0
-            };
+                prev
+            }
         });
 
     println!("Day 04 > Part 1: {}", overlaps);
@@ -89,20 +89,20 @@ pub fn part2() {
     let overlaps = read_file_lines("input/d04.txt")
         .iter()
         .fold(0_u16, |prev, pair| {
-            let mut sections = pair.split(",");
-            let mut first_section = sections.next().unwrap().split("-");
-            let mut second_section = sections.next().unwrap().split("-");
+            let mut sections = pair.split(',');
+            let mut first_section = sections.next().unwrap().split('-');
+            let mut second_section = sections.next().unwrap().split('-');
 
             let first_section_s = first_section.next().unwrap().parse::<u8>().unwrap();
             let first_section_e = first_section.next().unwrap().parse::<u8>().unwrap();
             let second_section_s = second_section.next().unwrap().parse::<u8>().unwrap();
             let second_section_e = second_section.next().unwrap().parse::<u8>().unwrap();
 
-            return if first_section_e < second_section_s || second_section_e < first_section_s {
-                prev + 0
+            if first_section_e < second_section_s || second_section_e < first_section_s {
+                prev
             } else {
                 prev + 1
-            };
+            }
         });
 
     println!("Day 04 > Part 1: {}", overlaps);
